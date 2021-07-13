@@ -33,7 +33,7 @@ export class LoginComponent {
     }
 
     login(): Promise<void | boolean> {
-        if (this.formIsValid(this.form)) {
+        if (!this.formIsValid(this.form)) {
             this.toast('Nope, your email and secret thing is bad');
             return Promise.resolve();
         }
@@ -46,7 +46,6 @@ export class LoginComponent {
                 return this._router.navigate(['']);
             })
             .catch((error) => {
-                console.error(error);
                 this.toast(error.message ?? 'Unknown error. Sry not sry');
             });
     }

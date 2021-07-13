@@ -1,0 +1,52 @@
+imports: [
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+],
+
+@Component({
+    selector: 'mat-form-field',
+    template: '',
+})
+class MockFormField {
+
+}
+
+@Component({
+    selector: 'input[matInput]',
+    template: '',
+})
+class MockInput {
+
+}
+
+@Component({
+    selector: 'button[mat-raised-button]',
+    template: '',
+})
+class MockButton {
+
+}
+
+@Component({
+    selector: 'mat-label',
+    template: '',
+})
+class MockLabel {
+
+}
+
+@Component({
+    selector: 'mat-error',
+    template: '',
+})
+class MockError {
+
+}
+
+MockFormField,
+MockInput,
+MockButton,
+MockLabel,
+MockError,

@@ -1,4 +1,4 @@
-export interface Item {
+export interface Icon {
     iconName: IconName;
     email: string;
 }

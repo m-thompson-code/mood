@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:watch:detect": "jest --watch --detectOpenHandles",
     "test:ci": "jest --runInBand",
     "prepare": "husky install",
     "format": "npx prettier --write ."

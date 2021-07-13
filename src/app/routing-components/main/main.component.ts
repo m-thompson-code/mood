@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IconName, Partners } from 'src/app/services/item.model';
-import { FirestoreService } from '../../services/firestore.service';
+import { IconName, Partners } from '../../types';
+import { IconsService } from '../../services/icons.service';
 
 @Component({
     selector: 'app-main',
@@ -10,15 +9,16 @@ import { FirestoreService } from '../../services/firestore.service';
     styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
+    // Order matters
     icons: IconName[] = [IconName.superBad, IconName.bad, IconName.neutral, IconName.good, IconName.superGood];
 
     partners$: Observable<Partners>;
 
-    constructor(private _firestoreService: FirestoreService) {
-        this.partners$ = this._firestoreService.getOurIcons();
+    constructor(private _iconsService: IconsService) {
+        this.partners$ = this._iconsService.getPartnerIcons();
     }
 
     setIcon(iconName: IconName): Promise<void> {
-        return this._firestoreService.setIcon(iconName);
+        return this._iconsService.setIcon(iconName);
     }
 }
