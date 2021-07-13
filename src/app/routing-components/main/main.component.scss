@@ -1,0 +1,42 @@
+$big: 250px;
+$small: 48px;
+
+$primary: #3880ff;
+$secondary: #3dc2ff;
+
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    background: mix(#fff, $primary, 30%);
+}
+
+.selected-emoji {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin icon-size($size) {
+    width: $size;
+    height: $size;
+    font-size: $size;
+}
+
+.big {
+    @include icon-size($big);
+}
+
+button {
+    margin: 6px;
+
+    mat-icon {
+        @include icon-size($small);
+    }
+}

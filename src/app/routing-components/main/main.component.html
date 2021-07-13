@@ -1,0 +1,17 @@
+<ng-container *ngIf="partners$ | async as partners">
+    <div class="selected-emoji">
+        <span>Parter A</span>
+        <mat-icon class="big" aria-hidden="false" aria-label="Example home icon">{{ partners.partnerA }}</mat-icon>
+    </div>
+
+    <div class="selected-emoji">
+        <span>Partner B</span>
+        <mat-icon class="big" aria-hidden="false" aria-label="Example home icon">{{ partners.partnerB }}</mat-icon>
+    </div>
+</ng-container>
+
+<div class="choices">
+    <button *ngFor="let icon of icons" mat-fab color="primary" (click)="setIcon(icon)">
+        <mat-icon>{{ icon }}</mat-icon>
+    </button>
+</div>

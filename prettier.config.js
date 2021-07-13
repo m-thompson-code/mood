@@ -2,11 +2,11 @@
 // If you don't specify one of these properties,
 // the default value will be applied.
 module.exports = {
-	printWidth: 140,
-	tabWidth: 4,
-	useTabs: true,
-	semi: true,
-	singleQuote: true,
-	trailingComma: 'all', // other options `es5` or `all`
-	bracketSpacing: true,
+    printWidth: 140,
+    tabWidth: 4,
+    useTabs: false,
+    semi: true,
+    singleQuote: true,
+    trailingComma: 'all', // other options `es5` or `all`
+    bracketSpacing: true,
 };
