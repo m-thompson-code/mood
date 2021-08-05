@@ -96,7 +96,7 @@ describe('LoginComponent', () => {
 
             const spy = jest.spyOn(component.form, 'updateValueAndValidity');
 
-            component.formIsValid(component.form);
+            component.formIsValid();
 
             expect(spy).toBeCalledTimes(1);
         });
@@ -105,23 +105,34 @@ describe('LoginComponent', () => {
             component.form.get('email')?.setValue('not a real email');
             component.form.get('password')?.setValue('');
 
-            expect(component.formIsValid(component.form)).toBe(false);
+            expect(component.formIsValid()).toBe(false);
         });
 
         it('should return true if FormGroup is valid', () => {
             component.form.get('email')?.setValue('some@email.com');
             component.form.get('password')?.setValue('some password');
 
-            expect(component.formIsValid(component.form)).toBe(true);
+            expect(component.formIsValid()).toBe(true);
         });
     });
 
     describe('getEmailAndPassword()', () => {
+        it('should return empty strings if email or password form control is not defined', () => {
+            component.form = new FormGroup({});
+
+            expect(component.form.controls.email).toBeFalsy();
+            expect(component.form.controls.password).toBeFalsy();
+            expect(component.getEmailAndPassword()).toStrictEqual({
+                email: '',
+                password: '',
+            });
+        });
+
         it('should get email and password from FormGroup', () => {
             component.form.get('email')?.setValue('some@email.com');
             component.form.get('password')?.setValue('some password');
 
-            expect(component.getEmailAndPassword(component.form)).toEqual({
+            expect(component.getEmailAndPassword()).toStrictEqual({
                 email: 'some@email.com',
                 password: 'some password',
             });
@@ -183,8 +194,7 @@ describe('LoginComponent', () => {
                     done();
                 });
             });
-
-            it('should toast error on error', (done) => {
+            it('should toast message from error', (done) => {
                 expect.assertions(1);
 
                 jest.spyOn(angularFireAuth, 'signInWithEmailAndPassword').mockRejectedValue({ message: 'some error' });
@@ -192,6 +202,18 @@ describe('LoginComponent', () => {
 
                 component.login().then(() => {
                     expect(spy).toBeCalledWith('some error');
+                    done();
+                });
+            });
+
+            it('should toast default error message if error has no message', (done) => {
+                expect.assertions(1);
+
+                jest.spyOn(angularFireAuth, 'signInWithEmailAndPassword').mockRejectedValue({});
+                const spy = jest.spyOn(component, 'toast');
+
+                component.login().then(() => {
+                    expect(spy).toBeCalledWith('Unknown error. Sry not sry');
                     done();
                 });
             });

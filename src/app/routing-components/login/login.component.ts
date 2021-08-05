@@ -19,13 +19,13 @@ export class LoginComponent {
         });
     }
 
-    formIsValid(formGroup: FormGroup): boolean {
-        formGroup.updateValueAndValidity();
+    formIsValid(): boolean {
+        this.form.updateValueAndValidity();
 
-        return formGroup.valid;
+        return this.form.valid;
     }
 
-    getEmailAndPassword(form: FormGroup): { email: string; password: string } {
+    getEmailAndPassword(): { email: string; password: string } {
         return {
             email: this.form.get('email')?.value ?? '',
             password: this.form.get('password')?.value ?? '',
@@ -33,12 +33,12 @@ export class LoginComponent {
     }
 
     login(): Promise<void | boolean> {
-        if (!this.formIsValid(this.form)) {
+        if (!this.formIsValid()) {
             this.toast('Nope, your email and secret thing is bad');
             return Promise.resolve();
         }
 
-        const { email, password } = this.getEmailAndPassword(this.form);
+        const { email, password } = this.getEmailAndPassword();
 
         return this._auth
             .signInWithEmailAndPassword(email, password)

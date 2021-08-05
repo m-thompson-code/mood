@@ -60,7 +60,7 @@ describe('IconsService', () => {
             expect.assertions(1);
 
             service.getPartnerIcons().subscribe((value) => {
-                expect(value).toEqual({
+                expect(value).toStrictEqual({
                     partnerA: IconName.bad,
                     partnerB: IconName.superGood,
                 });
@@ -85,7 +85,7 @@ describe('IconsService', () => {
             expect.assertions(1);
 
             service.getPartnerIcons().subscribe((value) => {
-                expect(value).toEqual({
+                expect(value).toStrictEqual({
                     partnerA: IconName.neutral,
                     partnerB: IconName.neutral,
                 });
@@ -101,7 +101,7 @@ describe('IconsService', () => {
             jest.spyOn(firestoreService, 'getAuthenticatedEmail').mockResolvedValue('');
 
             service.setIcon(IconName.neutral).catch((error) => {
-                expect(error).toEqual(new Error('No email! Oh no!'));
+                expect(error).toStrictEqual(new Error('No email! Oh no!'));
                 done();
             });
         });
