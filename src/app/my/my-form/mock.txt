@@ -7,13 +7,50 @@ import { AlertService } from '../alert.service';
 
 import { MyFormComponent } from './my-form.component';
 
+@Pipe({
+    name: 'excited',
+})
+class MockExcitedPipe implements PipeTransform {
+    transform(value: string): string {
+        return value;
+    }
+}
+
+@Component({
+    selector: 'app-input',
+})
+class MockAppInput {
+    @Input() value!: string;
+}
+
+@Component({
+    selector: 'app-button',
+})
+class MockAppButton {
+}
+
+const mockAlertService = {
+    test: () => of('moocow'),
+} as AlertService;
+
+@Directive({
+    selector: '[appUnderline]',
+})
+class MockUnderlineDirective {
+    @Input() appUnderline?: string;
+}
+
 describe('MyFormComponent', () => {
     let component: MyFormComponent;
     let fixture: ComponentFixture<MyFormComponent>;
-
+    
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [MyFormComponent],
+            declarations: [ MyFormComponent, MockExcitedPipe, MockAppInput, MockAppButton, MockUnderlineDirective ],
+            imports: [ RouterTestingModule, ReactiveFormsModule ],
+            providers: [ {
+                provide: AlertService, useValue: mockAlertService,
+            } ]
         }).compileComponents();
     });
 

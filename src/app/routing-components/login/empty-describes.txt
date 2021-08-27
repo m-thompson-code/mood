@@ -1,0 +1,12 @@
+
+    describe('formIsValid()', () => {
+    });
+
+    describe('getEmailAndPassword()', () => {
+    });
+
+    describe('login()', () => {
+    });
+
+    describe('toast()', () => {
+    });
