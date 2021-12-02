@@ -42,8 +42,8 @@ export class LoginComponent {
         const passwordFormControl = this.form.get('password') as FormControl;
 
         return {
-            email: emailFormControl.value ?? '',
-            password: passwordFormControl.value ?? '',
+            email: emailFormControl?.value ?? '',
+            password: passwordFormControl?.value ?? '',
         };
     }
 
