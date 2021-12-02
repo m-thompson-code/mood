@@ -1,6 +1,7 @@
 $padding: 12px;
 
 :host {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,9 +13,26 @@ $padding: 12px;
 }
 
 form {
+    position: relative;
     min-width: 150px;
     max-width: 500px;
     width: 100%;
+    padding: 30px;
+    background: white;
+}
+form::after {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 130%;
+    height: 130%;
+
+    background: aliceblue;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
 
 mat-form-field {
