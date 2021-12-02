@@ -38,10 +38,12 @@ export class LoginComponent {
      * @returns { email: string; password: string } - email and password
      */
     getEmailAndPassword(): { email: string; password: string } {
-        // Return email and password, return empty strings if no value is found
+        const emailFormControl = this.form.get('email') as FormControl;
+        const passwordFormControl = this.form.get('password') as FormControl;
+
         return {
-            email: this.form.get('email')?.value ?? '',
-            password: this.form.get('password')?.value ?? '',
+            email: emailFormControl?.value ?? '',
+            password: passwordFormControl?.value ?? '',
         };
     }
 

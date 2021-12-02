@@ -120,8 +120,8 @@ describe('LoginComponent', () => {
         it('should return empty strings if email or password form control is not defined', () => {
             component.form = new FormGroup({});
 
-            expect(component.form.controls.email).toBeFalsy();
-            expect(component.form.controls.password).toBeFalsy();
+            expect(component.form.get('email')).toBeFalsy();
+            expect(component.form.get('password')).toBeFalsy();
             expect(component.getEmailAndPassword()).toStrictEqual({
                 email: '',
                 password: '',
