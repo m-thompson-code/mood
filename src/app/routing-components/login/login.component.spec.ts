@@ -90,11 +90,11 @@ describe('LoginComponent', () => {
     });
 
     describe('formIsValid()', () => {
-        it('should update and validate FormGroup', () => {
+        it('should mark FormGroup as touched and trigger validation', () => {
             component.form.get('email')?.setValue('not a real email');
             component.form.get('password')?.setValue('not a real password');
 
-            const spy = jest.spyOn(component.form, 'updateValueAndValidity');
+            const spy = jest.spyOn(component.form, 'markAllAsTouched');
 
             component.formIsValid();
 
@@ -160,7 +160,7 @@ describe('LoginComponent', () => {
                 const spy = jest.spyOn(component, 'toast');
 
                 component.login().then(() => {
-                    expect(spy).toBeCalledWith('Nope, your email and secret thing is bad');
+                    expect(spy).toBeCalledWith('Nope, your email and secret thing is bad and you should feel bad');
                     done();
                 });
             });
